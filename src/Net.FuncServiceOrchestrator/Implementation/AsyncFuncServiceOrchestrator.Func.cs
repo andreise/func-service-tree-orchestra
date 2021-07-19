@@ -18,7 +18,18 @@ namespace System.Net
 
             #endregion
 
-            // TODO: Implement BFS/DFS to mark vertices to recalc their state
+            foreach (var leaf in leafsCache)
+            {
+                // TODO: Implement
+
+                //var current = leaf;
+                //var currentId = await current.GetIdAsync().ConfigureAwait(false);
+                
+                //while (invertedTreeCache.TryGetValue(currentId, out var next))
+                //{
+
+                //}
+            }
 
             return await root.InvokeAsync(cancellationToken).ConfigureAwait(false);
         }

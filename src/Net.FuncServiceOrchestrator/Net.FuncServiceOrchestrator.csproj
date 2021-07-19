@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Net.FuncService.Abstractions\Net.FuncService.Abstractions.csproj" />
     <ProjectReference Include="..\Net.FuncServiceOrchestrator.Abstractions\Net.FuncServiceOrchestrator.Abstractions.csproj" />
     <ProjectReference Include="..\Net.FuncService\Net.FuncService.csproj" />
+    <ProjectReference Include="..\System.Unit\System.Unit.csproj" />
   </ItemGroup>
 
 </Project>
