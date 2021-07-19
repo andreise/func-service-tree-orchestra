@@ -22,9 +22,12 @@ namespace System.Net
 
             #endregion
 
-            if (await root.IsTreeAsync(cancellationToken).ConfigureAwait(false))
+            if (await root.IsRootedTreeAsync(
+                    allowSingleton: true,
+                    cancellationToken: cancellationToken)
+                .ConfigureAwait(false))
             {
-                throw new ArgumentException(message: "The root cannot be a leaf.", paramName: nameof(root));
+                throw new ArgumentException(message: "The service graph must be a rooted tree.", paramName: nameof(root));
             }
 
             return new(root: root);

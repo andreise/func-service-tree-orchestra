@@ -18,6 +18,8 @@ namespace System.Net
 
             #endregion
 
+            // TODO: Implement BFS/DFS to mark vertices to recalc their state
+
             return await root.InvokeAsync(cancellationToken).ConfigureAwait(false);
         }
     }
