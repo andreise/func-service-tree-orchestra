@@ -7,9 +7,18 @@ namespace System.Net
 {
     partial class AsyncFuncServiceOrchestrator<TValue>
     {
-        public ValueTask<TValue> InvokeAsync(CancellationToken cancellationToken = default)
+        public async ValueTask<TValue> InvokeAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            #region Check if the task is canceled
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return await ValueTask.FromCanceled<TValue>(cancellationToken).ConfigureAwait(false);
+            }
+
+            #endregion
+
+            return await root.InvokeAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }
