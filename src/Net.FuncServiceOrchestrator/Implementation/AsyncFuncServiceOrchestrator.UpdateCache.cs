@@ -72,7 +72,7 @@ namespace System.Net
                 var children = await current.GetSourceConfigurationsAsync(cancellationToken).ConfigureAwait(false);
                 bool foundUnprocessed = false;
 
-                if (children.Count == 0)
+                if (children.Count == 0) // add check current is not the root if would adapt building for singleton (root only) too
                 {
                     leafsCache.Add(current);
                 }
