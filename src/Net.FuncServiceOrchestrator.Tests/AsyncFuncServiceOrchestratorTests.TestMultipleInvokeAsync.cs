@@ -23,7 +23,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
                 await serviceE.SetLinearSourceAsync(0, cancellationToken: default);
                 await serviceX.SetLinearSourceAsync(0, cancellationToken: default);
                 await serviceY.SetLinearSourceAsync(0, cancellationToken: default);
-                
+
                 var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
                 Assert.AreEqual(3, actualResult);
             }
