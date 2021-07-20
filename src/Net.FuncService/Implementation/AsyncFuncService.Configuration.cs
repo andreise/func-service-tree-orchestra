@@ -85,29 +85,29 @@ namespace System.Net
             return ValueTask.FromResult<IReadOnlyList<IAsyncFuncServiceRemoteConfiguration<TValue>>>(sourceSuppliers);
         }
 
-        ValueTask<Unit> IAsyncFuncServiceRemoteConfiguration<TValue>.ResetResultCacheAsync(
-            CancellationToken cancellationToken)
-        {
-            #region Check if the task is canceled
+        //ValueTask<Unit> IAsyncFuncServiceRemoteConfiguration<TValue>.ResetResultCacheAsync(
+        //    CancellationToken cancellationToken)
+        //{
+        //    #region Check if the task is canceled
 
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return ValueTask.FromCanceled<Unit>(cancellationToken);
-            }
+        //    if (cancellationToken.IsCancellationRequested)
+        //    {
+        //        return ValueTask.FromCanceled<Unit>(cancellationToken);
+        //    }
 
-            #endregion
+        //    #endregion
 
-            // TODO: A real microservice should return 405 Method Not Allowed code instead of throwing the invalid operation exception
+        //    // TODO: A real microservice should return 405 Method Not Allowed code instead of throwing the invalid operation exception
 
-            if (IsLinear)
-            {
-                throw new InvalidOperationException("Reset source cache operation is not applicable for the linear function service.");
-            }
+        //    if (IsLinear)
+        //    {
+        //        throw new InvalidOperationException("Reset source cache operation is not applicable for the linear function service.");
+        //    }
 
-            _ = InternalResetResultCache();
+        //    _ = InternalResetResultCache();
 
-            return default;
-        }
+        //    return default;
+        //}
 
         ValueTask<Unit> IAsyncFuncServiceRemoteConfiguration<TValue>.ResetSourceCacheAsync(
             int sourceIndex,
@@ -167,9 +167,12 @@ namespace System.Net
                 throw new InvalidOperationException("Set linear source operation is applicable for the linear function service only.");
             }
 
-            _ = InternalResetResultCache();
+            if (EqualityComparer<TValue>.Default.Equals(linearSource, value) is false)
+            {
+                _ = InternalResetResultCache();
 
-            linearSource = value;
+                linearSource = value;
+            }
 
             return default;
         }

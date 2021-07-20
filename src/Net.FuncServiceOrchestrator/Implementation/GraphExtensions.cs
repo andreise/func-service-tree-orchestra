@@ -28,5 +28,11 @@ namespace System.Net
                 _ => ValueTask.FromResult(true)
             };
         }
+
+        public static ValueTask<bool> IsLeafAsync<TValue>(
+            this IAsyncFuncService<TValue> vertex,
+            CancellationToken cancellationToken = default)
+            =>
+            vertex.GetIsLinearAsync(cancellationToken);
     }
 }

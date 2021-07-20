@@ -7,7 +7,7 @@ namespace System.Net
 {
     partial class AsyncFuncServiceOrchestrator<TValue>
     {
-        async ValueTask<TValue> IAsyncFunc<TValue>.InvokeAsync(CancellationToken cancellationToken)
+        private async ValueTask<TValue> InvokeSingletonAsync(CancellationToken cancellationToken)
         {
             #region Check if the task is canceled
 
@@ -18,9 +18,7 @@ namespace System.Net
 
             #endregion
 
-            return await root.IsLeafAsync(cancellationToken).ConfigureAwait(false)
-                ? await InvokeSingletonAsync(cancellationToken).ConfigureAwait(false)
-                : await InvokeGeneralAsync(cancellationToken).ConfigureAwait(false);
+            return await root.InvokeAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }
