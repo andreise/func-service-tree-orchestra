@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazyTreeCalc", "LazyTreeCalc\LazyTreeCalc.csproj", "{219F3B88-06AB-4FFE-8F08-DB32FCF2F6A6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Func", "System.Func\System.Func.csproj", "{2FE29E81-FAFC-43B4-8D39-70EE97820C13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Unit", "System.Unit\System.Unit.csproj", "{E5E9176D-F9AA-4AAF-9574-73160D5080DA}"
@@ -17,16 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.FuncServiceOrchestrator
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.FuncServiceOrchestrator.Abstractions", "Net.FuncServiceOrchestrator.Abstractions\Net.FuncServiceOrchestrator.Abstractions.csproj", "{96461D44-D61C-4FCC-9621-4049633C6831}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.FuncServiceOrchestrator.Tests", "Net.FuncServiceOrchestrator.Tests\Net.FuncServiceOrchestrator.Tests.csproj", "{27929B40-4EE4-48CC-A478-019F35311B06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{219F3B88-06AB-4FFE-8F08-DB32FCF2F6A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{219F3B88-06AB-4FFE-8F08-DB32FCF2F6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{219F3B88-06AB-4FFE-8F08-DB32FCF2F6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{219F3B88-06AB-4FFE-8F08-DB32FCF2F6A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FE29E81-FAFC-43B4-8D39-70EE97820C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FE29E81-FAFC-43B4-8D39-70EE97820C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FE29E81-FAFC-43B4-8D39-70EE97820C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{96461D44-D61C-4FCC-9621-4049633C6831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96461D44-D61C-4FCC-9621-4049633C6831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96461D44-D61C-4FCC-9621-4049633C6831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27929B40-4EE4-48CC-A478-019F35311B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27929B40-4EE4-48CC-A478-019F35311B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27929B40-4EE4-48CC-A478-019F35311B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27929B40-4EE4-48CC-A478-019F35311B06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

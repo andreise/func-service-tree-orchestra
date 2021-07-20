@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>System.Net.FuncServiceOrchestrator.Tests</RootNamespace>
+    <AssemblyName>Common.System.Net.FuncServiceOrchestrator.Tests</AssemblyName>
+    <Authors>Andrei Sergeev</Authors>
+    <Copyright>Copyright © 2021 Andrei Sergeev</Copyright>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.FuncService.Abstractions\Net.FuncService.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.FuncServiceOrchestrator.Abstractions\Net.FuncServiceOrchestrator.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.FuncServiceOrchestrator\Net.FuncServiceOrchestrator.csproj" />
+    <ProjectReference Include="..\Net.FuncService\Net.FuncService.csproj" />
+  </ItemGroup>
+
+</Project>

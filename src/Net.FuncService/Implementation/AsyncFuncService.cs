@@ -1,8 +1,6 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace System.Net
 {
@@ -40,6 +38,11 @@ namespace System.Net
             this.aggregateAsync = aggregateAsync;
 
             sourceCache = new CacheItem<TValue>[this.sourceCardinality];
+            for (int i = 0; i < sourceCache.Length; i++)
+            {
+                sourceCache[i] = new CacheItem<TValue>();
+            }
+
             resultCache = new CacheItem<TValue>();
         }
     }

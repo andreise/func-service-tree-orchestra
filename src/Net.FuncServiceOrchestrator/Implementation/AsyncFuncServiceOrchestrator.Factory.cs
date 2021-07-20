@@ -25,7 +25,7 @@ namespace System.Net
             if (await root.IsRootedTreeAsync(
                     allowSingleton: true,
                     cancellationToken: cancellationToken)
-                .ConfigureAwait(false))
+                .ConfigureAwait(false) is false)
             {
                 throw new ArgumentException(message: "The service graph must be a rooted tree.", paramName: nameof(root));
             }
