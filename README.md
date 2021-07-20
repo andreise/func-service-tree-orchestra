@@ -1,2 +1,2 @@
-# lazy-tree-calc
-A Lazy Tree Calculator
+# func-service-tree-orchestra
+A Function Service Tree Orchestra

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>System.Net</RootNamespace>
+    <AssemblyName>Common.System.Net.FuncService</AssemblyName>
+    <Authors>Andrei Sergeev</Authors>
+    <Copyright>Copyright © 2021 Andrei Sergeev</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.FuncService.Abstractions\Net.FuncService.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
