@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,8 +20,8 @@ namespace System.Net
 
             foreach (var leaf in leafsCache)
             {
-                IAsyncFuncService<TValue> current = leaf;
-                IAsyncFuncService<TValue>? next;
+                IAsyncFuncServiceRemoteConfiguration<TValue> current = leaf;
+                IAsyncFuncServiceRemoteConfiguration<TValue>? next;
 
                 while ((next = await MoveToNextAsync(current, cancellationToken).ConfigureAwait(false)) is not null)
                 {
@@ -33,8 +32,8 @@ namespace System.Net
             return await root.InvokeAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        private async ValueTask<IAsyncFuncService<TValue>?> MoveToNextAsync(
-            IAsyncFuncService<TValue> current,
+        private async ValueTask<IAsyncFuncServiceRemoteConfiguration<TValue>?> MoveToNextAsync(
+            IAsyncFuncServiceRemoteConfiguration<TValue> current,
             CancellationToken cancellationToken)
         {
             var currentId = await current.GetIdAsync(cancellationToken).ConfigureAwait(false);

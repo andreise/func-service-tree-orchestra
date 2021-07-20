@@ -18,6 +18,8 @@ namespace System.Net
 
             #endregion
 
+            _ = await UpdateCacheAsync(cancellationToken).ConfigureAwait(false);
+
             return await root.IsLeafAsync(cancellationToken).ConfigureAwait(false)
                 ? await InvokeSingletonAsync(cancellationToken).ConfigureAwait(false)
                 : await InvokeGeneralAsync(cancellationToken).ConfigureAwait(false);
