@@ -9,7 +9,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
     {
         [Test]
         [TestCase(3)]
-        public async ValueTask TestInvokeDefaultAsync(int expectedResult)
+        public async ValueTask TestDefaultInvokeAsync(int expectedResult)
         {
             var orchestra = await CreateOrchestratorDefaultAsync(cancellationToken: default);
 
