@@ -72,6 +72,11 @@ namespace System.Net
                 var children = await current.GetSourceConfigurationsAsync(cancellationToken).ConfigureAwait(false);
                 bool foundUnprocessed = false;
 
+                if (children.Count == 0)
+                {
+                    leafsCache.Add(current);
+                }
+
                 for (
                     int childIndex = 0;
                     childIndex < children.Count && (foundUnprocessed is false);

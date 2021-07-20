@@ -11,7 +11,7 @@ namespace System.Net
 
         private readonly IAsyncFuncService<TValue> root;
 
-        private readonly List<IAsyncFuncService<TValue>> leafsCache = new();
+        private readonly List<IAsyncFuncServiceRemoteConfiguration<TValue>> leafsCache = new();
 
         // Inverted Rooted Tree (Key: Child Id; Value: (Parent, ChildIndex))
         private readonly Dictionary<
