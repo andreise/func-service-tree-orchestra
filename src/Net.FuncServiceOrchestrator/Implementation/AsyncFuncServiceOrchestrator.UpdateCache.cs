@@ -40,7 +40,7 @@ namespace System.Net
 
             // Build using DFS (BFS also can be used)
 
-            if (await root.IsLeafAsync(cancellationToken).ConfigureAwait(false))
+            if (await root.IsLeafAsync(cancellationToken).ConfigureAwait(false) is false)
             {
                 _ = await RebuildCacheNonSingletonAsync(cancellationToken).ConfigureAwait(false);
             }
