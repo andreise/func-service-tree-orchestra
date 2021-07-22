@@ -40,10 +40,10 @@ namespace System.Net
             sourceCache = new CacheItem<TValue>[this.sourceCardinality];
             for (int i = 0; i < sourceCache.Length; i++)
             {
-                sourceCache[i] = new CacheItem<TValue>();
+                sourceCache[i] = new();
             }
 
-            resultCache = new CacheItem<TValue>();
+            resultCache = new();
         }
     }
 }
