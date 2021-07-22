@@ -85,10 +85,9 @@ namespace System.Net
                     var child = children[childIndex];
                     var childId = await child.GetIdAsync(cancellationToken).ConfigureAwait(false);
 
-                    if (invertedTreeCache.ContainsKey(childId) is false)
+                    if (invertedTreeCache.TryAdd(childId, (Parent: current, ChildIndex: childIndex)))
                     {
                         foundUnprocessed = true;
-                        invertedTreeCache.Add(childId, (Parent: current, ChildIndex: childIndex));
                         stack.Push(child);
                     }
                 }
