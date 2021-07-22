@@ -40,7 +40,7 @@ namespace System.Net
 
             if (invertedTreeCache.TryGetValue(currentId, out var next))
             {
-                await next.Parent.ResetSourceCacheAsync(next.ChildIndex, cancellationToken).ConfigureAwait(false);
+                _ = await next.Parent.ResetSourceCacheAsync(next.ChildIndex, cancellationToken).ConfigureAwait(false);
                 return next.Parent;
             }
 
