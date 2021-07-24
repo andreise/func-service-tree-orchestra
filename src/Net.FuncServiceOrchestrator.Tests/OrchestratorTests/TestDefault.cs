@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace System.Net.FuncServiceOrchestrator.Tests
 {
-    partial class AsyncFuncServiceOrchestratorTests
+    partial class OrchestratorTests
     {
         [Test]
         [TestCase(3)]

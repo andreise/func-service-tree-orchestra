@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.FuncService", "Net.Func
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.FuncService.Abstractions", "Net.FuncService.Abstractions\Net.FuncService.Abstractions.csproj", "{F12EC197-F3F6-4489-A90D-D94BA4CBD23C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.FuncServiceOrchestrator", "Net.FuncServiceOrchestrator\Net.FuncServiceOrchestrator.csproj", "{5DD98A53-9E69-4684-9970-5EB7C70FA71E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.FuncServiceOrchestrator", "Net.FuncServiceOrchestrator\Net.FuncServiceOrchestrator.csproj", "{5DD98A53-9E69-4684-9970-5EB7C70FA71E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.FuncServiceOrchestrator.Abstractions", "Net.FuncServiceOrchestrator.Abstractions\Net.FuncServiceOrchestrator.Abstractions.csproj", "{96461D44-D61C-4FCC-9621-4049633C6831}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.FuncServiceOrchestrator.Abstractions", "Net.FuncServiceOrchestrator.Abstractions\Net.FuncServiceOrchestrator.Abstractions.csproj", "{96461D44-D61C-4FCC-9621-4049633C6831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.FuncServiceOrchestrator.Tests", "Net.FuncServiceOrchestrator.Tests\Net.FuncServiceOrchestrator.Tests.csproj", "{27929B40-4EE4-48CC-A478-019F35311B06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.FuncServiceOrchestrator.Tests", "Net.FuncServiceOrchestrator.Tests\Net.FuncServiceOrchestrator.Tests.csproj", "{27929B40-4EE4-48CC-A478-019F35311B06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

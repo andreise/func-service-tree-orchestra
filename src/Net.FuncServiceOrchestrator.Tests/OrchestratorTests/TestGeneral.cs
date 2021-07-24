@@ -1,0 +1,36 @@
+#nullable enable
+
+using NUnit.Framework;
+using System.Threading.Tasks;
+
+namespace System.Net.FuncServiceOrchestrator.Tests
+{
+    public sealed partial class OrchestratorTests
+    {
+        [Test]
+        [TestCase(0, 0, 0, 0, 0, 0, 0, 3)]
+        [TestCase(1, 2, 3, 4, 5, 6, 7, 31)]
+        public async ValueTask TestInvokeAsync(
+            int a,
+            int b,
+            int c,
+            int d,
+            int e,
+            int x,
+            int y,
+            int expectedResult)
+        {
+            await leafA.SetLinearSourceAsync(a, cancellationToken: default);
+            await leafB.SetLinearSourceAsync(b, cancellationToken: default);
+            await leafC.SetLinearSourceAsync(c, cancellationToken: default);
+            await leafD.SetLinearSourceAsync(d, cancellationToken: default);
+            await leafE.SetLinearSourceAsync(e, cancellationToken: default);
+            await leafX.SetLinearSourceAsync(x, cancellationToken: default);
+            await leafY.SetLinearSourceAsync(y, cancellationToken: default);
+
+            var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+    }
+}

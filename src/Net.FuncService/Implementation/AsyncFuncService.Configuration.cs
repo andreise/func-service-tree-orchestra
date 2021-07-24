@@ -85,30 +85,6 @@ namespace System.Net
             return ValueTask.FromResult<IReadOnlyList<IAsyncFuncServiceRemoteConfiguration<TValue>>>(sourceSuppliers);
         }
 
-        //ValueTask<Unit> IAsyncFuncServiceRemoteConfiguration<TValue>.ResetResultCacheAsync(
-        //    CancellationToken cancellationToken)
-        //{
-        //    #region Check if the task is canceled
-
-        //    if (cancellationToken.IsCancellationRequested)
-        //    {
-        //        return ValueTask.FromCanceled<Unit>(cancellationToken);
-        //    }
-
-        //    #endregion
-
-        //    // TODO: A real microservice should return 405 Method Not Allowed code instead of throwing the invalid operation exception
-
-        //    if (IsLinear)
-        //    {
-        //        throw new InvalidOperationException("Reset source cache operation is not applicable for the linear function service.");
-        //    }
-
-        //    _ = InternalResetResultCache();
-
-        //    return default;
-        //}
-
         ValueTask<Unit> IAsyncFuncServiceRemoteConfiguration<TValue>.ResetSourceCacheAsync(
             int sourceIndex,
             CancellationToken cancellationToken)

@@ -24,9 +24,6 @@ namespace System.Net
         ValueTask<IReadOnlyList<IAsyncFuncServiceRemoteConfiguration<TValue>>> GetSourceConfigurationsAsync(
             CancellationToken cancellationToken = default);
 
-        //ValueTask<Unit> ResetResultCacheAsync(
-        //    CancellationToken cancellationToken = default);
-
         ValueTask<Unit> ResetSourceCacheAsync(
             int sourceIndex,
             CancellationToken cancellationToken = default);

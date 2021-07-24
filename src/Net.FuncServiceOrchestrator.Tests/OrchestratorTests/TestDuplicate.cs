@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace System.Net.FuncServiceOrchestrator.Tests
 {
-    public sealed partial class AsyncFuncServiceOrchestratorTests
+    public sealed partial class OrchestratorTests
     {
         [Test]
         [TestCase(0, 0, 0, 0, 0, 0, 0, 3)]
@@ -20,13 +20,13 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             int y,
             int expectedResult)
         {
-            await serviceA.SetLinearSourceAsync(a, cancellationToken: default);
-            await serviceB.SetLinearSourceAsync(b, cancellationToken: default);
-            await serviceC.SetLinearSourceAsync(c, cancellationToken: default);
-            await serviceD.SetLinearSourceAsync(d, cancellationToken: default);
-            await serviceE.SetLinearSourceAsync(e, cancellationToken: default);
-            await serviceX.SetLinearSourceAsync(x, cancellationToken: default);
-            await serviceY.SetLinearSourceAsync(y, cancellationToken: default);
+            await leafA.SetLinearSourceAsync(a, cancellationToken: default);
+            await leafB.SetLinearSourceAsync(b, cancellationToken: default);
+            await leafC.SetLinearSourceAsync(c, cancellationToken: default);
+            await leafD.SetLinearSourceAsync(d, cancellationToken: default);
+            await leafE.SetLinearSourceAsync(e, cancellationToken: default);
+            await leafX.SetLinearSourceAsync(x, cancellationToken: default);
+            await leafY.SetLinearSourceAsync(y, cancellationToken: default);
 
             for (int i = 0; i < 2; i++)
             {
