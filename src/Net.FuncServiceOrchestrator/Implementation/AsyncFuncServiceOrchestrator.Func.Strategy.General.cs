@@ -2,12 +2,13 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using static System.FormattableString;
 
 namespace System.Net
 {
     partial class AsyncFuncServiceOrchestrator<TValue>
     {
-        private async ValueTask<TValue> InvokeGeneralAsync(CancellationToken cancellationToken)
+        private async ValueTask<Result<TValue, Failure<FuncServiceOrchestratorFailureCode>>> InvokeGeneralAsync(CancellationToken cancellationToken)
         {
             #region Check if the task is canceled
 
@@ -17,6 +18,17 @@ namespace System.Net
             }
 
             #endregion
+
+            foreach (var leaf in leafsCache)
+            {
+                if (await leaf.GetLinearIsInitializedAsync(cancellationToken).ConfigureAwait(false) is false)
+                {
+                    var linearSourceName = await leaf.GetNameAsync(cancellationToken).ConfigureAwait(false);
+                    return Failure.Create(
+                        FuncServiceOrchestratorFailureCode.UninitializedLinearSource,
+                        Invariant($"The linear source '{linearSourceName}' is uninitialized."));
+                }
+            }
 
             foreach (var leaf in leafsCache)
             {

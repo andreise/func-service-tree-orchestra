@@ -1,6 +1,7 @@
 #nullable enable
 
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@ namespace System.Net.FuncServiceOrchestrator.Tests
         private IAsyncFuncService<int> leafX = null!;
         private IAsyncFuncService<int> leafY = null!;
 
+        private IReadOnlyList<IAsyncFuncService<int>> leafs = null!;
+
         private IAsyncFuncServiceOrchestrator<int> orchestra = null!;
 
         [SetUp]
@@ -28,6 +31,8 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             leafE = AsyncFuncService.CreateLinear<int>("E");
             leafX = AsyncFuncService.CreateLinear<int>("X");
             leafY = AsyncFuncService.CreateLinear<int>("Y");
+
+            leafs = new[] { leafA, leafB, leafC, leafD, leafE, leafX, leafY };
 
             orchestra = await BuildOrchestraAsync(cancellationToken: default);
         }

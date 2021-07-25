@@ -31,7 +31,9 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             for (int i = 0; i < 2; i++)
             {
                 var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
-                Assert.AreEqual(expectedResult, actualResult);
+
+                Assert.IsTrue(actualResult.IsSuccess);
+                Assert.AreEqual(expectedResult, actualResult.GetSuccessOrThrow());
             }
         }
     }

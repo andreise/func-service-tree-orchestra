@@ -10,7 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\System.Failure\System.Failure.csproj" />
     <ProjectReference Include="..\System.Func\System.Func.csproj" />
+    <ProjectReference Include="..\System.Result\System.Result.csproj" />
+    <ProjectReference Include="..\System.Unit\System.Unit.csproj" />
   </ItemGroup>
 
 </Project>

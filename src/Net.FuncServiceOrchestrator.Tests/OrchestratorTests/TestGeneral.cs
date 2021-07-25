@@ -10,7 +10,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
         [Test]
         [TestCase(0, 0, 0, 0, 0, 0, 0, 3)]
         [TestCase(1, 2, 3, 4, 5, 6, 7, 31)]
-        public async ValueTask TestInvokeAsync(
+        public async ValueTask TestGeneralAsync(
             int a,
             int b,
             int c,
@@ -30,7 +30,8 @@ namespace System.Net.FuncServiceOrchestrator.Tests
 
             var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
 
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.IsTrue(actualResult.IsSuccess);
+            Assert.AreEqual(expectedResult, actualResult.GetSuccessOrThrow());
         }
     }
 }

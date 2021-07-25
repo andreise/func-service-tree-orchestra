@@ -7,7 +7,7 @@ namespace System.Net
 {
     partial class AsyncFuncServiceOrchestrator<TValue>
     {
-        async ValueTask<TValue> IAsyncFunc<TValue>.InvokeAsync(CancellationToken cancellationToken)
+        async ValueTask<Result<TValue, Failure<FuncServiceOrchestratorFailureCode>>> IAsyncFunc<Result<TValue, Failure<FuncServiceOrchestratorFailureCode>>>.InvokeAsync(CancellationToken cancellationToken)
         {
             #region Check if the task is canceled
 

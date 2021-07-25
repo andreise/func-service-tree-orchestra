@@ -20,6 +20,8 @@ namespace System.Net
 
         private readonly CacheItem<TValue> resultCache;
 
+        private bool linearSourceIsInitialized;
+
         private TValue linearSource = default!;
 
         private bool IsLinear => sourceCardinality > 0 is false;
