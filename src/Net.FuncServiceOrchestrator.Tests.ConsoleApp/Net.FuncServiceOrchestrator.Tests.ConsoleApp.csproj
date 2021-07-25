@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>System.Net.FuncServiceOrchestrator.Tests</RootNamespace>
+    <AssemblyName>Common.System.Net.FuncServiceOrchestrator.Tests</AssemblyName>
+    <Authors>Andrei Sergeev</Authors>
+    <Copyright>Copyright © 2021 Andrei Sergeev</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.FuncService.Abstractions\Net.FuncService.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.FuncServiceOrchestrator.Abstractions\Net.FuncServiceOrchestrator.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.FuncServiceOrchestrator\Net.FuncServiceOrchestrator.csproj" />
+    <ProjectReference Include="..\Net.FuncService\Net.FuncService.csproj" />
+  </ItemGroup>
+
+</Project>

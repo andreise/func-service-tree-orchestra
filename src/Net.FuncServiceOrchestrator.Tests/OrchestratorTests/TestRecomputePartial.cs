@@ -29,6 +29,24 @@ namespace System.Net.FuncServiceOrchestrator.Tests
                 await leafD.SetLinearSourceAsync(0, cancellationToken: default);
                 await leafE.SetLinearSourceAsync(0, cancellationToken: default);
                 await leafX.SetLinearSourceAsync(0, cancellationToken: default);
+
+                var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
+
+                Assert.IsTrue(actualResult.IsFailure);
+                Assert.AreEqual(
+                    FuncServiceOrchestratorFailureCode.UninitializedLinearSource,
+                    actualResult.GetFailureOrThrow().FailureCode);
+
+                Assert.AreEqual(0, notificationQueue.Count);
+            }
+
+            {
+                await leafA.SetLinearSourceAsync(0, cancellationToken: default);
+                await leafB.SetLinearSourceAsync(0, cancellationToken: default);
+                await leafC.SetLinearSourceAsync(0, cancellationToken: default);
+                await leafD.SetLinearSourceAsync(0, cancellationToken: default);
+                await leafE.SetLinearSourceAsync(0, cancellationToken: default);
+                await leafX.SetLinearSourceAsync(0, cancellationToken: default);
                 await leafY.SetLinearSourceAsync(0, cancellationToken: default);
 
                 var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
