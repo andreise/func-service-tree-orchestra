@@ -5,7 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RootNamespace>System.Net.FuncServiceOrchestrator.Tests</RootNamespace>
-    <AssemblyName>Common.System.Net.FuncServiceOrchestrator.Tests</AssemblyName>
+    <AssemblyName>Common.System.Net.FuncServiceOrchestrator.Tests.ConsoleApp</AssemblyName>
     <Authors>Andrei Sergeev</Authors>
     <Copyright>Copyright © 2021 Andrei Sergeev</Copyright>
   </PropertyGroup>
