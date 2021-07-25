@@ -49,7 +49,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
                 var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
 
                 Assert.IsTrue(actualResult.IsSuccess);
-                //Assert.AreEqual(3, actualResult.GetSuccessOrThrow());
+                Assert.AreEqual(4, actualResult.GetSuccessOrThrow());
 
                 var actualRecomputedNodes = new HashSet<string>(notificationQueue);
                 var expectedRecomputedNodes = new[] { "Fx", "Fe" };
@@ -64,7 +64,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
                 var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
 
                 Assert.IsTrue(actualResult.IsSuccess);
-                //Assert.AreEqual(3, actualResult.GetSuccessOrThrow());
+                Assert.AreEqual(5, actualResult.GetSuccessOrThrow());
 
                 var actualRecomputedNodes = new HashSet<string>(notificationQueue);
                 var expectedRecomputedNodes = new[] { "Fab", "Fcd", "Fe" };
@@ -80,7 +80,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
                 var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
 
                 Assert.IsTrue(actualResult.IsSuccess);
-                //Assert.AreEqual(3, actualResult.GetSuccessOrThrow());
+                Assert.AreEqual(7, actualResult.GetSuccessOrThrow());
 
                 var actualRecomputedNodes = new HashSet<string>(notificationQueue);
                 var expectedRecomputedNodes = new[] { "Fcd", "Fx", "Fe" };
