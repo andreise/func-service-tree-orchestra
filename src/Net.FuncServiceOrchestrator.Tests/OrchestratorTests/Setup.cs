@@ -2,7 +2,6 @@
 
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace System.Net.FuncServiceOrchestrator.Tests
