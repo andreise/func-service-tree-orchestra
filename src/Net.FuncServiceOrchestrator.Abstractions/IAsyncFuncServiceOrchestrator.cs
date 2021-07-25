@@ -2,7 +2,7 @@
 
 namespace System.Net
 {
-    public interface IAsyncFuncServiceOrchestrator<TValue> : IAsyncFunc<TValue>
+    public interface IAsyncFuncServiceOrchestrator<TValue> : IAsyncFunc<Result<TValue, Failure<FuncServiceOrchestratorFailureCode>>>
     {
     }
 }

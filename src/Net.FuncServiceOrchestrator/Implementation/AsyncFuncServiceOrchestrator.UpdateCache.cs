@@ -8,23 +8,7 @@ namespace System.Net
 {
     partial class AsyncFuncServiceOrchestrator<TValue>
     {
-        private ValueTask<Unit> UpdateCacheAsync(CancellationToken cancellationToken)
-        {
-            #region Check if the task is canceled
-
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return ValueTask.FromCanceled<Unit>(cancellationToken);
-            }
-
-            #endregion
-
-            return ForceCacheRebuild || (cacheIsBuilt is false)
-                ? RebuildCacheAsync(cancellationToken)
-                : default;
-        }
-
-        private async ValueTask<Unit> RebuildCacheAsync(CancellationToken cancellationToken)
+        private async ValueTask<Unit> UpdateCacheAsync(CancellationToken cancellationToken)
         {
             #region Check if the task is canceled
 
@@ -35,70 +19,110 @@ namespace System.Net
 
             #endregion
 
-            leafsCache.Clear();
-            invertedTreeCache.Clear();
-
-            // Build using DFS (BFS also can be used)
-
-            if (await root.IsLeafAsync(cancellationToken).ConfigureAwait(false) is false)
+            if (ForceCacheRebuild || (cacheIsBuilt is false))
             {
-                _ = await RebuildCacheNonSingletonAsync(cancellationToken).ConfigureAwait(false);
+                (leafsCache, invertedTreeCache) = await root.IsLeafAsync(cancellationToken).ConfigureAwait(false)
+                    ? (LeafsCacheEmpty(), InvertedTreeCacheEmpty())
+                    : await BuildCacheNonSingletonAsync(root, cancellationToken).ConfigureAwait(false);
+
+                cacheIsBuilt = true;
             }
-
-            leafsCache.TrimExcess();
-            invertedTreeCache.TrimExcess();
-
-            cacheIsBuilt = true;
 
             return default;
         }
 
-        private async ValueTask<Unit> RebuildCacheNonSingletonAsync(CancellationToken cancellationToken)
+        private static async ValueTask<(
+            IReadOnlyList<IAsyncFuncServiceRemoteConfiguration<TValue>> Leafs,
+            IReadOnlyDictionary<
+                Guid,
+                (IAsyncFuncServiceRemoteConfiguration<TValue> Parent, int ChildIndex)> InvertedTree)>
+            BuildCacheNonSingletonAsync(
+                IAsyncFuncService<TValue> root,
+                CancellationToken cancellationToken)
         {
             #region Check if the task is canceled
 
             if (cancellationToken.IsCancellationRequested)
             {
-                return await ValueTask.FromCanceled<Unit>(cancellationToken).ConfigureAwait(false);
+                return await ValueTask
+                    .FromCanceled<(
+                        IReadOnlyList<IAsyncFuncServiceRemoteConfiguration<TValue>>,
+                        IReadOnlyDictionary<
+                            Guid,
+                            (IAsyncFuncServiceRemoteConfiguration<TValue>, int)>)>(
+                        cancellationToken)
+                    .ConfigureAwait(false);
             }
 
             #endregion
 
-            Stack<IAsyncFuncServiceRemoteConfiguration<TValue>> stack = new(new[] { root });
+            var leafs = new List<IAsyncFuncServiceRemoteConfiguration<TValue>>();
 
+            var invertedTree = new Dictionary<
+                Guid,
+                (IAsyncFuncServiceRemoteConfiguration<TValue> Parent, int ChildIndex)>();
+
+            // Build the cache using DFS (BFS also can be used)
+
+            var stack = new Stack<IAsyncFuncServiceRemoteConfiguration<TValue>>(new[] { root });
             do
             {
-                var current = stack.Peek();
-                var children = await current.GetSourceConfigurationsAsync(cancellationToken).ConfigureAwait(false);
-                bool foundUnprocessed = false;
+                await MoveAsync(stack, leafs, invertedTree, cancellationToken).ConfigureAwait(false);
+            } while (stack.Count > 0);
 
-                if (children.Count == 0) // add check current is not the root if would adapt building for singleton (root only) too
+            leafs.TrimExcess();
+            invertedTree.TrimExcess();
+
+            return (leafs, invertedTree);
+
+            static async ValueTask<Unit> MoveAsync(
+                Stack<IAsyncFuncServiceRemoteConfiguration<TValue>> stack,
+                List<IAsyncFuncServiceRemoteConfiguration<TValue>> leafs,
+                Dictionary<
+                    Guid,
+                    (IAsyncFuncServiceRemoteConfiguration<TValue> Parent, int ChildIndex)> invertedTree,
+                CancellationToken cancellationToken)
+            {
+                #region Check if the task is canceled
+
+                if (cancellationToken.IsCancellationRequested)
                 {
-                    leafsCache.Add(current);
+                    return await ValueTask.FromCanceled<Unit>(cancellationToken).ConfigureAwait(false);
                 }
 
-                for (
-                    int childIndex = 0;
-                    childIndex < children.Count && (foundUnprocessed is false);
-                    childIndex++)
+                #endregion
+
+                var current = stack.Peek();
+                var children = await current.GetSourceConfigurationsAsync(cancellationToken).ConfigureAwait(false);
+
+                // add check current is not the root if would adapt building for singleton (root only) too
+                if (children.Count == 0)
+                {
+                    leafs.Add(current);
+                }
+
+                bool foundNew = false;
+
+                for (int childIndex = 0; childIndex < children.Count; childIndex++)
                 {
                     var child = children[childIndex];
                     var childId = await child.GetIdAsync(cancellationToken).ConfigureAwait(false);
 
-                    if (invertedTreeCache.TryAdd(childId, (Parent: current, ChildIndex: childIndex)))
+                    if (invertedTree.TryAdd(childId, (Parent: current, ChildIndex: childIndex)))
                     {
-                        foundUnprocessed = true;
+                        foundNew = true;
                         stack.Push(child);
+                        break;
                     }
                 }
 
-                if (foundUnprocessed is false)
+                if (foundNew is false)
                 {
                     _ = stack.Pop();
                 }
-            } while (stack.Count > 0);
 
-            return default;
+                return default;
+            }
         }
     }
 }

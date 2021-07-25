@@ -18,14 +18,17 @@ namespace System.Net
         ValueTask<bool> GetIsLinearAsync(
             CancellationToken cancellationToken = default);
 
+        ValueTask<bool> GetLinearIsInitializedAsync(
+            CancellationToken cancellationToken = default);
+
+        ValueTask<bool> GetLinearIsActualizedAsync(
+            CancellationToken cancellationToken = default);
+
         ValueTask<int> GetSourceCardinalityAsync(
             CancellationToken cancellationToken = default);
 
         ValueTask<IReadOnlyList<IAsyncFuncServiceRemoteConfiguration<TValue>>> GetSourceConfigurationsAsync(
             CancellationToken cancellationToken = default);
-
-        //ValueTask<Unit> ResetResultCacheAsync(
-        //    CancellationToken cancellationToken = default);
 
         ValueTask<Unit> ResetSourceCacheAsync(
             int sourceIndex,

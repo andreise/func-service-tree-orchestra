@@ -23,6 +23,7 @@ namespace System.Net
             {
                 await UpdateSourceCacheGeneralAsync(cancellationToken).ConfigureAwait(false);
                 await UpdateResultCacheGeneralAsync(cancellationToken).ConfigureAwait(false);
+                notificationQueue.Enqueue(name);
             }
 
             return resultCache.Value;
