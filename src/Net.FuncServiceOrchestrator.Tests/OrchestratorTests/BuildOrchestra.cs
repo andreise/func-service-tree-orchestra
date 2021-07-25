@@ -16,44 +16,42 @@ namespace System.Net.FuncServiceOrchestrator.Tests
                 BuildSuppliers(
                     leafX),
                 BuildAggregate(
-                    src => src[0] + 1));
+                    src => src[0] + 1),
+                notificationQueue);
 
             var nodeFy = AsyncFuncService.Create(
                 "Fy",
                 BuildSuppliers(
                     leafY),
                 BuildAggregate(
-                    src => src[0] + 2));
+                    src => src[0] + 2),
+                notificationQueue);
 
             var nodeFab = AsyncFuncService.Create(
                 "Fab",
                 BuildSuppliers(
                     leafA, leafB),
                 BuildAggregate(
-                    src => src[0] + src[1]));
+                    src => src[0] + src[1]),
+                notificationQueue);
 
             var nodeFcd = AsyncFuncService.Create(
                 "Fcd",
                 BuildSuppliers(
                     leafC, leafD, nodeFab, nodeFy),
                 BuildAggregate(
-                    src => src[0] + src[1] + src[2] + src[3]));
+                    src => src[0] + src[1] + src[2] + src[3]),
+                notificationQueue);
 
             var nodeFe = AsyncFuncService.Create(
                 "Fe",
                 BuildSuppliers(
                     leafE, nodeFcd, nodeFx),
                 BuildAggregate(
-                    src => src[0] + src[1] + src[2]));
+                    src => src[0] + src[1] + src[2]),
+                notificationQueue);
 
-            var root = AsyncFuncService.Create(
-                "Root",
-                BuildSuppliers(
-                    nodeFe),
-                BuildAggregate(
-                    src => src[0]));
-
-            return await AsyncFuncServiceOrchestrator.CreateAsync(root, cancellationToken);
+            return await AsyncFuncServiceOrchestrator.CreateAsync(nodeFe, cancellationToken);
 
             static IAsyncFuncService<TValue>[] BuildSuppliers<TValue>(params IAsyncFuncService<TValue>[] services)
                 =>

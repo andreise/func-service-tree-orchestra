@@ -1,6 +1,7 @@
 #nullable enable
 
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace System.Net.FuncServiceOrchestrator.Tests
@@ -10,7 +11,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
         [Test]
         [TestCase(0, 0, 0, 0, 0, 0, 0, 3)]
         [TestCase(1, 2, 3, 4, 5, 6, 7, 31)]
-        public async ValueTask TestGeneralAsync(
+        public async ValueTask TestCommonAsync(
             int a,
             int b,
             int c,
@@ -32,6 +33,10 @@ namespace System.Net.FuncServiceOrchestrator.Tests
 
             Assert.IsTrue(actualResult.IsSuccess);
             Assert.AreEqual(expectedResult, actualResult.GetSuccessOrThrow());
+
+            var actualRecomputedNodes = new HashSet<string>(notificationQueue);
+            var expectedRecomputedNodes = new[] { "Fx", "Fy", "Fab", "Fcd", "Fe" };
+            Assert.True(actualRecomputedNodes.SetEquals(expectedRecomputedNodes));
         }
     }
 }

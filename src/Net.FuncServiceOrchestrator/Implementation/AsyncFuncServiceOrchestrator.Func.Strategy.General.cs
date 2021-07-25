@@ -32,6 +32,11 @@ namespace System.Net
 
             foreach (var leaf in leafsCache)
             {
+                if (await leaf.GetLinearIsActualizedAsync(cancellationToken).ConfigureAwait(false))
+                {
+                    continue;
+                }
+
                 IAsyncFuncServiceRemoteConfiguration<TValue> current = leaf;
                 IAsyncFuncServiceRemoteConfiguration<TValue>? next;
 

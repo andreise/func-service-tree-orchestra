@@ -21,6 +21,9 @@ namespace System.Net
         ValueTask<bool> GetLinearIsInitializedAsync(
             CancellationToken cancellationToken = default);
 
+        ValueTask<bool> GetLinearIsActualizedAsync(
+            CancellationToken cancellationToken = default);
+
         ValueTask<int> GetSourceCardinalityAsync(
             CancellationToken cancellationToken = default);
 

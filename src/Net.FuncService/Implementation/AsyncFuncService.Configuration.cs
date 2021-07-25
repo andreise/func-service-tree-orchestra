@@ -77,6 +77,28 @@ namespace System.Net
             return ValueTask.FromResult(linearSourceIsInitialized);
         }
 
+        ValueTask<bool> IAsyncFuncServiceRemoteConfiguration<TValue>.GetLinearIsActualizedAsync(
+            CancellationToken cancellationToken)
+        {
+            #region Check if the task is canceled
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return ValueTask.FromCanceled<bool>(cancellationToken);
+            }
+
+            #endregion
+
+            // TODO: A real microservice should return 405 Method Not Allowed code instead of throwing the invalid operation exception
+
+            if (IsLinear is false)
+            {
+                throw new InvalidOperationException("The operation is applicable for the linear function service only.");
+            }
+
+            return ValueTask.FromResult(resultCache.IsValid);
+        }
+
         ValueTask<int> IAsyncFuncServiceRemoteConfiguration<TValue>.GetSourceCardinalityAsync(
             CancellationToken cancellationToken)
         {

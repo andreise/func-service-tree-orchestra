@@ -15,11 +15,15 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
 
             Assert.IsTrue(actualResult.IsFailure);
-            Assert.AreEqual(FuncServiceOrchestratorFailureCode.UninitializedLinearSource, actualResult.GetFailureOrThrow().FailureCode);
+            Assert.AreEqual(
+                FuncServiceOrchestratorFailureCode.UninitializedLinearSource,
+                actualResult.GetFailureOrThrow().FailureCode);
+
+            Assert.AreEqual(0, notificationQueue.Count);
         }
 
         [Test]
-        [TestCaseSource(nameof(TestUninitializedCaseSource))]
+        [TestCaseSource(nameof(TestUninitializedSingleCaseSource))]
         public async ValueTask TestUninitializedSingleAsync(int indexToExclude)
         {
             foreach (int currentIndex in Enumerable.Range(0, leafs.Count))
@@ -33,10 +37,14 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             var actualResult = await orchestra.InvokeAsync(cancellationToken: default);
 
             Assert.IsTrue(actualResult.IsFailure);
-            Assert.AreEqual(FuncServiceOrchestratorFailureCode.UninitializedLinearSource, actualResult.GetFailureOrThrow().FailureCode);
+            Assert.AreEqual(
+                FuncServiceOrchestratorFailureCode.UninitializedLinearSource,
+                actualResult.GetFailureOrThrow().FailureCode);
+
+            Assert.AreEqual(0, notificationQueue.Count);
         }
 
-        private static IEnumerable<int> TestUninitializedCaseSource()
+        private static IEnumerable<int> TestUninitializedSingleCaseSource()
             =>
             Enumerable.Range(0, count: 7);
     }

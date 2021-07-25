@@ -10,11 +10,13 @@ namespace System.Net
         public static IAsyncFuncService<TValue> Create<TValue>(
             [AllowNull] string name,
             IReadOnlyList<IAsyncFuncService<TValue>> sourceSuppliers,
-            IAsyncFunc<IReadOnlyList<TValue>, TValue> aggregateAsync)
+            IAsyncFunc<IReadOnlyList<TValue>, TValue> aggregateAsync,
+            Queue<string> notificationQueue)
             =>
             AsyncFuncService<TValue>.Create(
                 name: name,
                 sourceSuppliers: sourceSuppliers,
-                aggregateAsync: aggregateAsync);
+                aggregateAsync: aggregateAsync,
+                notificationQueue: notificationQueue);
     }
 }

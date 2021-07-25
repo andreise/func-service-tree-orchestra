@@ -16,6 +16,8 @@ namespace System.Net
 
         private readonly IAsyncFunc<IReadOnlyList<TValue>, TValue> aggregateAsync;
 
+        private readonly Queue<string> notificationQueue;
+
         private readonly CacheItem<TValue>[] sourceCache;
 
         private readonly CacheItem<TValue> resultCache;
@@ -31,13 +33,15 @@ namespace System.Net
             string name,
             int sourceCardinality,
             IReadOnlyList<IAsyncFuncService<TValue>> sourceSuppliers,
-            IAsyncFunc<IReadOnlyList<TValue>, TValue> aggregateAsync)
+            IAsyncFunc<IReadOnlyList<TValue>, TValue> aggregateAsync,
+            Queue<string> notificationQueue)
         {
             this.id = id;
             this.name = name;
             this.sourceCardinality = sourceCardinality;
             this.sourceSuppliers = sourceSuppliers;
             this.aggregateAsync = aggregateAsync;
+            this.notificationQueue = notificationQueue;
 
             sourceCache = new CacheItem<TValue>[this.sourceCardinality];
             for (int i = 0; i < sourceCache.Length; i++)

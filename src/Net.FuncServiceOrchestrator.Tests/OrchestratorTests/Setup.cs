@@ -18,6 +18,8 @@ namespace System.Net.FuncServiceOrchestrator.Tests
 
         private IReadOnlyList<IAsyncFuncService<int>> leafs = null!;
 
+        private Queue<string> notificationQueue = null!;
+
         private IAsyncFuncServiceOrchestrator<int> orchestra = null!;
 
         [SetUp]
@@ -32,6 +34,8 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             leafY = AsyncFuncService.CreateLinear<int>("Y");
 
             leafs = new[] { leafA, leafB, leafC, leafD, leafE, leafX, leafY };
+
+            notificationQueue = new();
 
             orchestra = await BuildOrchestraAsync(cancellationToken: default);
         }

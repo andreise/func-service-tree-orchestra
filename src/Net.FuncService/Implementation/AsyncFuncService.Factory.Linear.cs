@@ -9,13 +9,13 @@ namespace System.Net
     {
         public static AsyncFuncService<TValue> CreateLinear(
             [AllowNull] string name)
-        {
-            return new(
+            =>
+            new(
                 id: Guid.NewGuid(),
                 name: name ?? string.Empty,
                 sourceCardinality: 0,
                 sourceSuppliers: Array.Empty<IAsyncFuncService<TValue>>(),
-                aggregateAsync: InapplicableLinearAggregate<IReadOnlyList<TValue>, TValue>.DefaultInstance);
-        }
+                aggregateAsync: InapplicableLinearAggregate<IReadOnlyList<TValue>, TValue>.DefaultInstance,
+                notificationQueue: new Queue<string>(capacity: 0));
     }
 }
