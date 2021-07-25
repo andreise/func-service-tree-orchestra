@@ -60,7 +60,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
             }
             WriteLine();
 
-            WriteLine("Partially initialized (X):");
+            WriteLine("Partially updated (X):");
             {
                 await leafX.SetLinearSourceAsync(1, cancellationToken: default);
 
@@ -68,13 +68,13 @@ namespace System.Net.FuncServiceOrchestrator.Tests
 
                 WriteLine(Invariant($"  IsSuccess: {actualResult.IsSuccess}"));
                 WriteLine(Invariant($"  Result: {actualResult.GetSuccessOrThrow()}"));
-                WriteLine(Invariant($"  Computed: {string.Join("; ", notificationQueue.Select(item => Invariant($"{item}")))}"));
+                WriteLine(Invariant($"  Recomputed: {string.Join("; ", notificationQueue.Select(item => Invariant($"{item}")))}"));
 
                 notificationQueue.Clear();
             }
             WriteLine();
 
-            WriteLine("Partially initialized (A):");
+            WriteLine("Partially updated (A):");
             {
                 await leafA.SetLinearSourceAsync(1, cancellationToken: default);
 
@@ -82,13 +82,13 @@ namespace System.Net.FuncServiceOrchestrator.Tests
 
                 WriteLine(Invariant($"  IsSuccess: {actualResult.IsSuccess}"));
                 WriteLine(Invariant($"  Result: {actualResult.GetSuccessOrThrow()}"));
-                WriteLine(Invariant($"  Computed: {string.Join("; ", notificationQueue.Select(item => Invariant($"{item}")))}"));
+                WriteLine(Invariant($"  Recomputed: {string.Join("; ", notificationQueue.Select(item => Invariant($"{item}")))}"));
 
                 notificationQueue.Clear();
             }
             WriteLine();
 
-            WriteLine("Partially initialized (C, X):");
+            WriteLine("Partially updated (C, X):");
             {
                 await leafC.SetLinearSourceAsync(1, cancellationToken: default);
                 await leafX.SetLinearSourceAsync(2, cancellationToken: default);
@@ -97,7 +97,7 @@ namespace System.Net.FuncServiceOrchestrator.Tests
 
                 WriteLine(Invariant($"  IsSuccess: {actualResult.IsSuccess}"));
                 WriteLine(Invariant($"  Result: {actualResult.GetSuccessOrThrow()}"));
-                WriteLine(Invariant($"  Computed: {string.Join("; ", notificationQueue.Select(item => Invariant($"{item}")))}"));
+                WriteLine(Invariant($"  Recomputed: {string.Join("; ", notificationQueue.Select(item => Invariant($"{item}")))}"));
 
                 notificationQueue.Clear();
             }
